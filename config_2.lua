@@ -32,7 +32,8 @@ ${color1}11: ${color}${freq 11}Mhz ${goto 120}${cpubar cpu11 12,110}  	${goto 24
 ${color1}12: ${color}${freq 12}Mhz ${goto 120}${cpubar cpu12 12,110}  	${goto 240}${color1}24: ${color}${freq 24}Mhz ${goto 360}${cpubar cpu24 12,110}
 $hr
 ${color1}GPU: ${color}${template9 1000 name}		${color1}${goto 360}Fan: ${alignr}${color}${template9 2 fan.speed}RPM
-${color1}Temp: ${color}${template9 2 temperature.gpu}°C 				${color1}${goto 340}Power: ${alignr}${color}${template9 2 power.draw.instant}W 
 ${color1}GPU Usage: ${color}${template9 2 utilization.gpu}%		${alignr}${color1}VRAM Usage: ${color}${template9 4 memory.used}/${template9 4 memory.total}MB
-${color}${template8 2 utilization.gpu} ${alignr}${color}${template8 1000 utilization.gpu}
+${color}${template8 2 utilization.gpu} ${alignr}${color}${template8 2 utilization.gpu}
+${color1}Temp: ${color}${template9 2 temperature.gpu}°C 				${color1}${goto 340}Power: ${alignr}${color}${template9 2 power.draw.instant}W
+${color}${template8 2 temperature.gpu} ${alignr}${color}${template8 2 temperature.gpu}
 ]];
