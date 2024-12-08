@@ -14,6 +14,10 @@ function merge(a, b)
     return a
 end
 
+function gap_x(n)
+    return (n - 1) * 590
+end
+
 base_config = {
     own_window = true,
     own_window_type = 'normal',
@@ -21,10 +25,11 @@ base_config = {
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     own_window_class = 'Conky',
     own_window_argb_visual = true,
-    own_window_argb_value = 64,
+    own_window_argb_value = 128,
 	own_window_colour = 'black',
 
-	alignment = 'left',
+	alignment = 'top_left',
+    gap_y = 300,
     background = true,
     double_buffer = true,
 
@@ -38,7 +43,8 @@ base_config = {
 	default_shade_color = 'white',
 	color1 = '#CCAB8D',
 	color2 = '#D1E7D1',
-	color3 = '#FF0000',
+    -- light blue
+	color3 = '#00BFFF',
 	color4 = '#FFFFFF',
 	maximum_width = 480,
 	minimum_width = 480,

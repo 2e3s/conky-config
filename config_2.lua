@@ -1,15 +1,23 @@
 dofile(os.getenv("HOME") .. '/.config/conky/' .. "base.lua")
 
 conky.config = merge(base_config, {
-	gap_x = 590,
+	gap_x = gap_x(2),
 	show_graph_scale = true,
-	show_graph_range = true,
+    template9 = [[${execi \1 nvidia-smi --query-gpu=\2 --format=csv,noheader,nounits}]],
+	template8 = [[${execigraph \1 "nvidia-smi --query-gpu=\2 --format=csv,noheader,nounits" 60,235 07CC0D FF0000}]],
 });
 
 conky.text = [[
-${color}${cpugraph}
-${color1}CPU: ${color}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c -17}		${color1}${goto 340}FanA: ${alignr}${color}${exec "sensors -u nct6798-isa-0290 | grep -o 'fan1_input: [0-9]\{1,4\}' | cut -c 13-"}RPM 
-${color1}Temp: ${color}${lua cpu_temp}C 			${color1}${goto 340}FanB: ${alignr}${color}${exec "sensors -u nct6798-isa-0290 | grep -o 'fan7_input: [0-9]\{1,4\}' | cut -c 13-"}RPM 
+${color1}Hostname: ${color}$nodename     				${alignr}${color1}Kernel: ${color}$kernel 
+${color1}Uptime: ${color} $uptime_short ${color1}    	${alignr}Load: ${color} $loadavg
+${color1}ACPI temp: ${color}${acpitemp}°C
+$hr
+${color}Frequency :${color1} $freq ${color}MHz
+${color}CPU Usage :${color1} $cpu% ${cpubar 4}
+${color}${cpugraph -t}
+${color1}CPU: ${color}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c -17}		${goto 340}${color1}Temp: ${color}${lua cpu_temp}C
+${color1}Fans: ${color}${hwmon 3 fan 1}RPM ${hwmon 3 fan 2}RPM ${hwmon 3 fan 3}RPM ${hwmon 3 fan 4}RPM ${hwmon 3 fan 5}RPM ${hwmon 3 fan 6}RPM ${hwmon 3 fan 7}RPM
+${color}${execgraph "sensors | grep 'Core' | awk '{print $3}' | sort -nr | head -1" 555555 00ff00}
 ${color1}1:  ${color}${freq 1}Mhz ${goto 120}${cpubar cpu1 12,110}  	${goto 240}${color1}13: ${color}${freq 13}Mhz ${goto 360}${cpubar cpu13 12,110}
 ${color1}2:  ${color}${freq 2}Mhz ${goto 120}${cpubar cpu2 12,110}  	${goto 240}${color1}14: ${color}${freq 14}Mhz ${goto 360}${cpubar cpu14 12,110}
 ${color1}3:  ${color}${freq 3}Mhz ${goto 120}${cpubar cpu3 12,110}  	${goto 240}${color1}15: ${color}${freq 15}Mhz ${goto 360}${cpubar cpu15 12,110}
@@ -23,8 +31,8 @@ ${color1}10: ${color}${freq 10}Mhz ${goto 120}${cpubar cpu10 12,110}  	${goto 24
 ${color1}11: ${color}${freq 11}Mhz ${goto 120}${cpubar cpu11 12,110}  	${goto 240}${color1}23: ${color}${freq 23}Mhz ${goto 360}${cpubar cpu23 12,110}
 ${color1}12: ${color}${freq 12}Mhz ${goto 120}${cpubar cpu12 12,110}  	${goto 240}${color1}24: ${color}${freq 24}Mhz ${goto 360}${cpubar cpu24 12,110}
 $hr
-${color1}GPU: ${color}${lua nvidia_smi name}		${color1}${goto 360}Fan: ${alignr}${color}${lua nvidia_smi fan.speed}RPM
-${color1}Temp: ${color}${lua nvidia_smi temperature.gpu}C 				${color1}${goto 340}Power: ${alignr}${color}${lua nvidia_smi power.draw.instant}W 
-${color1}GPU Usage: ${color}${lua nvidia_smi utilization.gpu}%		${alignr}${color1}VRAM Usage: ${color}${lua nvidia_smi memory.used}/${lua nvidia_smi memory.total}MB
-${color}${lua_graph nvidia_smi_usage 60,235 07CC0D FF0000} ${alignr}${color}${lua_graph nvidia_smi_memory 60,235 07CC0D FF0000 24000}
+${color1}GPU: ${color}${template9 1000 name}		${color1}${goto 360}Fan: ${alignr}${color}${template9 2 fan.speed}RPM
+${color1}Temp: ${color}${template9 2 temperature.gpu}°C 				${color1}${goto 340}Power: ${alignr}${color}${template9 2 power.draw.instant}W 
+${color1}GPU Usage: ${color}${template9 2 utilization.gpu}%		${alignr}${color1}VRAM Usage: ${color}${template9 4 memory.used}/${template9 4 memory.total}MB
+${color}${template8 2 utilization.gpu} ${alignr}${color}${template8 1000 utilization.gpu}
 ]];
