@@ -2,7 +2,7 @@
 Comment=Start all conky instances
 Exec=start.sh
 Name=conky
-Path=~/.config/conky/
+Path=~/.conky/
 StartupNotify=false
 Terminal=false
 Type=Application

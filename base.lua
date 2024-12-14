@@ -66,5 +66,5 @@ base_config = {
 	max_port_monitor_connections = 64,
 	no_buffers = true,
 	net_avg_samples = 2,
-    lua_load = '~/.config/conky/scripts.lua'
+    lua_load = '~/.conky/scripts.lua'
 };

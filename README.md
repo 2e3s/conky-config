@@ -7,6 +7,5 @@ This works for KDE + Wayland, possibly for any X11 environment.
 ## Install
 
 ```sh
-cd ~/.config
-git pull git@github.com:2e3s/conky-config.git conky
+git pull git@github.com:2e3s/conky-config.git .conky
 ```

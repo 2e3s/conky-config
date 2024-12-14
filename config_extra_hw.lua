@@ -1,4 +1,4 @@
-dofile(os.getenv("HOME") .. '/.config/conky/' .. "base.lua")
+dofile(os.getenv("HOME") .. '/.conky/' .. "base.lua")
 
 conky.config = merge(base_config, {
 	gap_x = gap_x(3),
