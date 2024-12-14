@@ -15,7 +15,7 @@ function merge(a, b)
 end
 
 function gap_x(n)
-    return (n - 1) * 590
+    return 150 + (n - 1) * 500
 end
 
 base_config = {

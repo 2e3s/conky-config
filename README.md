@@ -1,4 +1,8 @@
-# Conky config for KDE + Wayland
+# Conky config
+
+This works for KDE + Wayland, possibly for any X11 environment.
+
+![Screenshot](screenshot.png)
 
 ## Install
 

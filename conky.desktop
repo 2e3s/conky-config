@@ -1,6 +1,8 @@
 [Desktop Entry]
-Type=Application
+Comment=Start all conky instances
+Exec=start.sh
 Name=conky
-Exec=conky --daemonize --pause=5
+Path=~/.config/conky/
 StartupNotify=false
 Terminal=false
+Type=Application
