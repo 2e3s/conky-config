@@ -5,7 +5,7 @@ conky.config = merge(base_config, {
     template9 = [[${execi \1 nvidia-smi --query-gpu=\2 --format=csv,noheader,nounits}]],
 	template8 = [[${execigraph \1 "nvidia-smi --query-gpu=\2 --format=csv,noheader,nounits" 60,235 07CC0D FF0000}]],
 	template7 = [[${execigraph \1 "echo "scale=2; $(nvidia-smi --query-gpu=\2 --format=csv,noheader,nounits) / \3 * 100" | bc" 60,235 07CC0D FF0000 -t}]],
-	template6 = [[${execigraph \1 "nvidia-smi --query-gpu=\2,power.limit --format=csv,noheader,nounits | awk -F, '{ if ($2 > 0) print $1 * 100 / $2 }'" 60,235 07CC0D FF0000 -t}]],
+	template6 = [[${execigraph \1 "nvidia-smi --query-gpu=\2,power.limit --format=csv,noheader,nounits | awk -F, '{ if ($2 > 0) print $1 * 100 / ($2 * 1.2) }'" 60,235 07CC0D FF0000 -t}]],
 });
 
 conky.text = [[
