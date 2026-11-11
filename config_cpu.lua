@@ -13,7 +13,7 @@ ${color}Frequency :${color1} $freq ${color}MHz
 ${color}CPU Usage :${color1} $cpu% ${cpubar 4}
 ${color}${cpugraph -t}
 ${color1}CPU: ${color}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c -17}		${goto 340}${color1}Temp: ${color}${lua cpu_temp}°C
-${color1}Fans: ${color}${hwmon 3 fan 1}RPM ${hwmon 3 fan 2}RPM ${hwmon 3 fan 3}RPM ${hwmon 3 fan 4}RPM ${hwmon 3 fan 5}RPM ${hwmon 3 fan 6}RPM ${hwmon 3 fan 7}RPM
+${color1}Fans: ${color}${hwmon 4 fan 1}RPM ${hwmon 4 fan 2}RPM ${hwmon 4 fan 3}RPM ${hwmon 4 fan 4}RPM ${hwmon 4 fan 5}RPM ${hwmon 4 fan 6}RPM ${hwmon 4 fan 7}RPM
 ${color}${execgraph "sensors | grep 'Core' | awk '{print $3}' | sort -nr | head -1" 555555 00ff00}
 ${color1}1:  ${color}${freq 1}Mhz ${goto 120}${cpubar cpu1 12,110}  	${goto 240}${color1}13: ${color}${freq 13}Mhz ${goto 360}${cpubar cpu13 12,110}
 ${color1}2:  ${color}${freq 2}Mhz ${goto 120}${cpubar cpu2 12,110}  	${goto 240}${color1}14: ${color}${freq 14}Mhz ${goto 360}${cpubar cpu14 12,110}
